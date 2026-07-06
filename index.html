@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shivaprakash H V — AI Engineer</title>
+<meta name="description" content="Shivaprakash H V — AI Engineer specializing in Generative AI, LLM applications, RAG pipelines and intelligent automation.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0A0E1A;
+  --surface:#111827;
+  --surface-2:#151F33;
+  --line:#1F2B45;
+  --text:#E6EBF4;
+  --muted:#8B95AB;
+  --cyan:#3FD6E0;
+  --violet:#8B7CF6;
+  --grad:linear-gradient(100deg,var(--cyan),var(--violet));
+  --radius:14px;
+  --maxw:1080px;
+  --nav-bg:rgba(10,14,26,.82);
+  --nav-bg-solid:rgba(10,14,26,.97);
+  --term-bg:rgba(17,24,39,.88);
+  --term-bar-bg:rgba(21,31,51,.9);
+  --ghost-bg:rgba(17,24,39,.6);
+  --award:#E8C555;
+}
+[data-theme="light"]{
+  --bg:#F5F7FB;
+  --surface:#FFFFFF;
+  --surface-2:#EDF1F8;
+  --line:#D9E0EC;
+  --text:#1A2233;
+  --muted:#5A6577;
+  --cyan:#0E9AA7;
+  --violet:#6D5BD0;
+  --nav-bg:rgba(245,247,251,.85);
+  --nav-bg-solid:rgba(245,247,251,.98);
+  --term-bg:rgba(255,255,255,.92);
+  --term-bar-bg:rgba(237,241,248,.95);
+  --ghost-bg:rgba(255,255,255,.7);
+  --award:#A07C00;
+}
+body{transition:background .3s ease,color .3s ease}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:'IBM Plex Sans',system-ui,sans-serif;
+  font-size:16px;line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3{font-family:'Space Grotesk',sans-serif;line-height:1.15}
+.mono{font-family:'IBM Plex Mono',monospace}
+a{color:var(--cyan);text-decoration:none}
+a:hover{text-decoration:underline}
+a:focus-visible,button:focus-visible{outline:2px solid var(--cyan);outline-offset:3px;border-radius:4px}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+section{padding:88px 0}
+.eyebrow{
+  font-family:'IBM Plex Mono',monospace;font-size:.78rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--cyan);display:block;margin-bottom:12px;
+}
+.section-title{font-size:clamp(1.7rem,3.4vw,2.4rem);font-weight:600;margin-bottom:14px}
+.section-sub{color:var(--muted);max-width:640px;margin-bottom:44px}
+.grad-text{background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+
+/* ---------- Nav ---------- */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:50;
+  background:var(--nav-bg);backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--line);
+}
+.nav-inner{max-width:var(--maxw);margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:1.05rem;color:var(--text)}
+.logo span{color:var(--cyan)}
+.nav-links{display:flex;gap:26px;list-style:none}
+.nav-links a{color:var(--muted);font-size:.88rem;font-weight:500}
+.nav-links a:hover{color:var(--text);text-decoration:none}
+.nav-right{display:flex;align-items:center;gap:18px}
+.theme-btn{
+  background:var(--surface-2);border:1px solid var(--line);border-radius:50%;
+  width:36px;height:36px;font-size:1rem;cursor:pointer;line-height:1;
+  display:inline-flex;align-items:center;justify-content:center;transition:transform .15s ease,border-color .15s ease;
+}
+.theme-btn:hover{transform:rotate(20deg);border-color:var(--cyan)}
+.menu-btn{display:none;background:none;border:1px solid var(--line);color:var(--text);border-radius:8px;padding:6px 12px;font-size:1rem;cursor:pointer}
+
+/* ---------- Hero ---------- */
+#hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:140px 0 80px}
+#nodes{position:absolute;inset:0;width:100%;height:100%;opacity:.5}
+.hero-content{position:relative;z-index:2}
+.terminal{
+  background:var(--term-bg);border:1px solid var(--line);border-radius:var(--radius);
+  max-width:760px;box-shadow:0 24px 60px rgba(0,0,0,.45);overflow:hidden;
+}
+.term-bar{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line);background:var(--term-bar-bg)}
+.dot{width:11px;height:11px;border-radius:50%}
+.dot.r{background:#F06A6A}.dot.y{background:#E8C555}.dot.g{background:#5BC98C}
+.term-title{margin-left:8px;font-family:'IBM Plex Mono',monospace;font-size:.74rem;color:var(--muted)}
+.term-body{padding:26px 28px 30px;font-family:'IBM Plex Mono',monospace;font-size:.9rem}
+.prompt-line{color:var(--muted);margin-bottom:18px}
+.prompt-line .p{color:var(--cyan)}
+.hero-name{font-size:clamp(2.1rem,5.4vw,3.4rem);font-weight:700;margin:6px 0 10px;font-family:'Space Grotesk',sans-serif}
+.hero-role{font-size:clamp(1rem,2.2vw,1.2rem);color:var(--text);font-weight:500;min-height:1.6em}
+.cursor{display:inline-block;width:.55em;height:1.15em;background:var(--cyan);vertical-align:text-bottom;margin-left:3px;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+.hero-desc{color:var(--muted);margin-top:16px;font-family:'IBM Plex Sans',sans-serif;max-width:56ch}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:14px;margin-top:26px}
+.btn{
+  display:inline-flex;align-items:center;gap:8px;padding:11px 22px;border-radius:10px;
+  font-weight:600;font-size:.9rem;font-family:'IBM Plex Sans',sans-serif;transition:transform .15s ease,box-shadow .15s ease;
+}
+.btn:hover{text-decoration:none;transform:translateY(-2px)}
+.btn-primary{background:var(--grad);color:#07101d}
+.btn-primary:hover{box-shadow:0 8px 24px rgba(63,214,224,.25)}
+.btn-ghost{border:1px solid var(--line);color:var(--text);background:var(--ghost-bg)}
+.btn-ghost:hover{border-color:var(--cyan)}
+.hero-meta{margin-top:26px;display:flex;flex-wrap:wrap;gap:18px;color:var(--muted);font-size:.82rem;font-family:'IBM Plex Mono',monospace}
+
+/* ---------- Skills strip ---------- */
+.skills-strip{border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--surface);padding:34px 0}
+.skill-groups{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:26px}
+.skill-group h3{font-size:.82rem;letter-spacing:.1em;text-transform:uppercase;color:var(--cyan);font-family:'IBM Plex Mono',monospace;font-weight:500;margin-bottom:12px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tag{
+  font-family:'IBM Plex Mono',monospace;font-size:.74rem;color:var(--text);
+  background:var(--surface-2);border:1px solid var(--line);border-radius:6px;padding:4px 10px;
+}
+
+/* ---------- Education ---------- */
+.edu-grid{display:grid;grid-template-columns:1.1fr 1fr;gap:28px}
+.card{
+  background:var(--surface);border:1px solid var(--line);border-radius:var(--radius);
+  padding:28px;transition:border-color .2s ease,transform .2s ease;
+}
+.card:hover{border-color:rgba(63,214,224,.45);transform:translateY(-3px)}
+.card h3{font-size:1.15rem;margin-bottom:6px}
+.card .meta{color:var(--muted);font-size:.86rem;margin-bottom:12px;font-family:'IBM Plex Mono',monospace}
+.card p{color:var(--muted);font-size:.94rem}
+.acad-list{list-style:none;display:grid;gap:16px;margin-top:8px}
+.acad-list li{padding-left:20px;position:relative;color:var(--muted);font-size:.94rem}
+.acad-list li::before{content:"▸";position:absolute;left:0;color:var(--violet)}
+.acad-list strong{color:var(--text);font-weight:600}
+
+/* ---------- Experience ---------- */
+.timeline{position:relative;padding-left:34px}
+.timeline::before{content:"";position:absolute;left:9px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--cyan),var(--violet))}
+.t-item{position:relative;margin-bottom:36px}
+.t-item::before{
+  content:"";position:absolute;left:-32px;top:6px;width:16px;height:16px;border-radius:50%;
+  background:var(--bg);border:3px solid var(--cyan);
+}
+.t-item h3{font-size:1.2rem}
+.t-item .role-meta{color:var(--muted);font-family:'IBM Plex Mono',monospace;font-size:.82rem;margin:4px 0 16px}
+.exp-list{list-style:none;display:grid;gap:12px}
+.exp-list li{padding-left:22px;position:relative;color:var(--muted);font-size:.94rem}
+.exp-list li::before{content:"→";position:absolute;left:0;color:var(--cyan)}
+.exp-list strong{color:var(--text);font-weight:600}
+.impact{display:flex;flex-wrap:wrap;gap:14px;margin-top:22px}
+.impact .chip{
+  background:var(--surface-2);border:1px solid var(--line);border-radius:10px;padding:12px 18px;
+}
+.impact .chip b{display:block;font-family:'Space Grotesk',sans-serif;font-size:1.3rem;background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent}
+.impact .chip span{font-size:.78rem;color:var(--muted)}
+
+/* ---------- Projects ---------- */
+.proj-cat{font-family:'IBM Plex Mono',monospace;font-size:.8rem;letter-spacing:.12em;text-transform:uppercase;color:var(--violet);margin:38px 0 18px}
+.proj-cat:first-of-type{margin-top:0}
+.proj-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.proj-card{display:flex;flex-direction:column;gap:12px}
+.proj-card h3{font-size:1.05rem}
+.proj-card .award{font-size:.76rem;color:var(--award);font-family:'IBM Plex Mono',monospace}
+.proj-card p{flex:1}
+.proj-card .tags{margin-top:2px}
+.proj-link{font-size:.84rem;font-family:'IBM Plex Mono',monospace}
+.gh-banner{
+  margin-top:44px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px;
+  background:var(--surface-2);border:1px solid var(--line);border-radius:var(--radius);padding:26px 30px;
+}
+.gh-banner h3{font-size:1.1rem}
+.gh-banner p{color:var(--muted);font-size:.9rem}
+
+/* ---------- Certificates ---------- */
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:20px}
+.cert-card{display:flex;flex-direction:column;gap:8px}
+.cert-card .icon{font-size:1.5rem}
+.cert-card h3{font-size:.98rem}
+.cert-card .issuer{color:var(--muted);font-size:.82rem;font-family:'IBM Plex Mono',monospace}
+.ach-box{margin-top:40px}
+.pub{
+  margin-top:26px;background:var(--surface);border-left:3px solid var(--violet);
+  border-radius:0 var(--radius) var(--radius) 0;padding:22px 26px;
+}
+.pub h3{font-size:1rem;margin-bottom:6px}
+.pub p{color:var(--muted);font-size:.9rem}
+
+/* ---------- Contact ---------- */
+#contact{padding-bottom:60px}
+.contact-card{
+  background:var(--surface);border:1px solid var(--line);border-radius:20px;
+  padding:52px 40px;text-align:center;position:relative;overflow:hidden;
+}
+.contact-card::before{
+  content:"";position:absolute;inset:-2px;border-radius:22px;padding:2px;
+  background:var(--grad);-webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;opacity:.5;pointer-events:none;
+}
+.contact-card h2{font-size:clamp(1.6rem,3.4vw,2.2rem);margin-bottom:12px}
+.contact-card>p{color:var(--muted);max-width:520px;margin:0 auto 30px}
+.contact-links{display:flex;flex-wrap:wrap;justify-content:center;gap:14px}
+footer{padding:34px 0;text-align:center;color:var(--muted);font-size:.8rem;font-family:'IBM Plex Mono',monospace;border-top:1px solid var(--line);margin-top:60px}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  .cursor{animation:none}
+  *{transition:none!important}
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:760px){
+  .nav-links{
+    position:absolute;top:100%;left:0;right:0;flex-direction:column;gap:0;
+    background:var(--nav-bg-solid);border-bottom:1px solid var(--line);display:none;padding:10px 0;
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{display:block;padding:12px 24px}
+  .menu-btn{display:block}
+  .edu-grid{grid-template-columns:1fr}
+  .term-body{padding:22px 18px 24px}
+  section{padding:64px 0}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a class="logo" href="#hero">shiva<span>.</span>ai</a>
+    <div class="nav-right">
+      <ul class="nav-links" id="navlinks">
+        <li><a href="#hero">Home</a></li>
+        <li><a href="#education">Education</a></li>
+        <li><a href="#publication">Publication</a></li>
+        <li><a href="#experience">Experience</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certificates">Certificates</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <button class="theme-btn" id="themeBtn" aria-label="Switch theme" onclick="toggleTheme()">☀️</button>
+      <button class="menu-btn" aria-label="Toggle menu" onclick="document.getElementById('navlinks').classList.toggle('open')">☰</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ================= HERO ================= -->
+<section id="hero">
+  <canvas id="nodes" aria-hidden="true"></canvas>
+  <div class="wrap hero-content">
+    <div class="terminal">
+      <div class="term-bar">
+        <span class="dot r"></span><span class="dot y"></span><span class="dot g"></span>
+        <span class="term-title">shivaprakash@aiml ~ % session active</span>
+      </div>
+      <div class="term-body">
+        <div class="prompt-line"><span class="p">&gt;&gt;&gt;</span> query: "Who builds enterprise-grade AIML solutions?"</div>
+        <h1 class="hero-name">Shivaprakash <span class="grad-text">H V</span></h1>
+        <div class="hero-role"><span id="typed"></span><span class="cursor" aria-hidden="true"></span></div>
+        <p class="hero-desc">AI Engineer with 4.5+ years of experience building enterprise-grade automation and applied AI solutions — from LLM-powered applications, RAG pipelines and multi-agent GenAI prototypes to production-scale intelligent automation.</p>
+        <div class="hero-ctas">
+          <a class="btn btn-primary" href="#projects">View Projects</a>
+          <a class="btn btn-ghost" href="https://github.com/Shivaprakashhv/AIMLProjects" target="_blank" rel="noopener">GitHub ↗</a>
+          <a class="btn btn-ghost" href="#contact">Contact Me</a>
+        </div>
+        <div class="hero-meta">
+          <span>🧠 GenAI · RAG · Agentic AI</span>
+          <span>💼 Infosys Limited</span>
+          <span>📍 Bengaluru, Karnataka</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SKILLS ================= -->
+<div class="skills-strip reveal">
+  <div class="wrap">
+    <div class="skill-groups">
+      <div class="skill-group">
+        <h3>AI / GenAI</h3>
+        <div class="tags">
+          <span class="tag">LLMs</span><span class="tag">RAG</span><span class="tag">Agentic AI</span>
+          <span class="tag">Multi-Agent</span><span class="tag">Prompt Engineering</span><span class="tag">Embeddings</span>
+          <span class="tag">Milvus</span><span class="tag">Opik</span><span class="tag">IBM watsonx</span>
+          <span class="tag">Flowise</span><span class="tag">OCR</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Machine Learning</h3>
+        <div class="tags">
+          <span class="tag">Supervised / Unsupervised</span><span class="tag">Feature Engineering</span>
+          <span class="tag">Recommenders</span><span class="tag">Classification</span>
+          <span class="tag">K-Means · PCA</span><span class="tag">ROC-AUC</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Programming</h3>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">PyTorch / Transformers</span><span class="tag">Scikit-learn</span>
+          <span class="tag">Pandas · NumPy</span><span class="tag">MySQL / SQL</span><span class="tag">REST APIs</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Automation &amp; Enterprise</h3>
+        <div class="tags">
+          <span class="tag">Automation Anywhere</span><span class="tag">UiPath</span>
+          <span class="tag">Salesforce</span><span class="tag">Mainframe Automation</span><span class="tag">API Integrations</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ================= EDUCATION ================= -->
+<section id="education">
+  <div class="wrap">
+    <span class="eyebrow reveal">// education &amp; academics</span>
+    <h2 class="section-title reveal">Education &amp; <span class="grad-text">Academic Activities</span></h2>
+    <p class="section-sub reveal">Engineering foundations in information science, extended through hands-on academic projects and a peer-reviewed publication.</p>
+    <div class="edu-grid">
+      <div class="card reveal">
+        <h3>Bachelor of Engineering — Information Science &amp; Engineering</h3>
+        <div class="meta">2017 – 2021 · CGPA 7.5</div>
+        <p>Adichunchanagiri Institute of Technology, Chikkamagaluru<br>Visvesvaraya Technological University, Belagavi</p>
+        <div style="margin-top:16px">
+          <strong style="color:var(--text)">Activities:</strong>
+          <ul class="acad-list" style="margin-top:10px">
+            <li>Actively participated in technical, cultural and sports events — including coding contests, technical quizzes and paper presentations at college fests.</li>
+            <li>Volunteered in organizing department-level tech events and cultural programs.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card reveal">
+        <h3>Academic Projects</h3>
+        <div class="meta">Undergraduate work</div>
+        <ul class="acad-list">
+          <li><strong>Areca Nut Classification (MATLAB)</strong> — Texture-based segregation of areca nut variants using image processing techniques and an Arduino microcontroller.</li>
+          <li><strong>Prison Management System (PRISMS)</strong> — MySQL-backed system with full CRUD operations for jailor, prisoner and visitor records.</li>
+          <li><strong>COVID-19: The Pandemic</strong> — Informational web project with a detailed front page, deployed on Apache Server.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PUBLICATION ================= -->
+<section id="publication" style="border-top:1px solid var(--line)">
+  <div class="wrap">
+    <span class="eyebrow reveal">// publication</span>
+    <h2 class="section-title reveal">Research <span class="grad-text">Publication</span></h2>
+    <p class="section-sub reveal">Peer-reviewed research work published in an international journal.</p>
+    <div class="pub reveal">
+      <h3>📄 Smart E-Ticketing and Payment System using Wi-Fi for Public Transport Bus</h3>
+      <p>IJSREM, Vol. 07, Issue 09, Sep 2023 · Peer-reviewed (SJIF 8.176)<br>GPS/Wi-Fi IoT architecture for automated fare calculation and real-time passenger analytics.</p>
+      <a class="btn btn-ghost" style="margin-top:18px" href="https://ijsrem.com/download/smart-e-ticketing-and-payment-system-using-wi-fi-for-public-transport-bus" target="_blank" rel="noopener">Read Paper ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= EXPERIENCE ================= -->
+<section id="experience" style="background:var(--surface)">
+  <div class="wrap">
+    <span class="eyebrow reveal">// professional experience</span>
+    <h2 class="section-title reveal">Where I've <span class="grad-text">Built &amp; Shipped</span></h2>
+    <p class="section-sub reveal">From problem discovery and rapid POCs to production-grade, compliant enterprise systems.</p>
+    <div class="timeline">
+      <div class="t-item reveal">
+        <h3>Infosys Limited</h3>
+        <div class="role-meta">Bengaluru · Sep 2021 – Present</div>
+        <ul class="exp-list">
+          <li><strong>Agentic AI for IT Operations:</strong> Building an autonomous Agentic AI solution on the Infosys Topaz Fabric platform that picks up ServiceNow incidents and resolves them end-to-end, reducing manual triage and accelerating incident resolution.</li>
+          <li><strong>Applied AI &amp; GenAI POCs:</strong> Developed a POC integrating Agentic AI APIs (hosted on Flowise) with UiPath RPA — secure REST calls, dynamic parameterization and error handling for AI-driven decisioning inside automation workflows.</li>
+          <li><strong>Problem Discovery to Solution:</strong> Partnered with stakeholders to identify high-impact AI/automation opportunities; ran feasibility audits and translated ambiguous manual pharmacy workflows into scalable automated pipelines.</li>
+          <li><strong>End-to-End Architecture:</strong> Designed and deployed enterprise solutions integrating Web UI, REST APIs, Salesforce, SQL databases and legacy mainframes — eliminating 8–10 hours of daily manual effort on a mission-critical process.</li>
+          <li><strong>High-Volume Data Engineering:</strong> Built a hybrid Web UI/API bot ingesting 1,500–2,000 records daily; optimized to 150+ transactions in 3 hours (~2–3 min/record) with automated business reporting.</li>
+          <li><strong>Reusable Frameworks:</strong> Designed a reusable automation framework cutting development lead time by 30% across all subsequent projects.</li>
+          <li><strong>Compliance &amp; Data Integrity:</strong> Engineered validation logic ensuring 100% data accuracy and security compliance in a regulated healthcare environment.</li>
+        </ul>
+        <div class="impact">
+          <div class="chip"><b>4.5+ yrs</b><span>enterprise AI &amp; automation</span></div>
+          <div class="chip"><b>8–10 hrs</b><span>manual effort saved daily</span></div>
+          <div class="chip"><b>30%</b><span>faster development lead time</span></div>
+          <div class="chip"><b>100%</b><span>data accuracy in healthcare</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROJECTS ================= -->
+<section id="projects">
+  <div class="wrap">
+    <span class="eyebrow reveal">// projects &amp; github</span>
+    <h2 class="section-title reveal">Things I've <span class="grad-text">Prototyped &amp; Proven</span></h2>
+    <p class="section-sub reveal">GenAI and LLM systems, classic machine learning, and hackathon-winning ideas.</p>
+
+    <div class="proj-cat reveal">GenAI &amp; LLM Projects</div>
+    <div class="proj-grid">
+      <div class="card proj-card reveal">
+        <h3>End-to-End RAG Pipeline</h3>
+        <p class="card p">Complete RAG pipeline with sliding-window chunking, Milvus Lite vector storage, BGE-small-en-v1.5 embeddings and Qwen2-1.5B-Instruct for grounded responses. Evaluated retrieval quality and hallucination rates with Opik, iterating on chunking and prompts to improve answer faithfulness.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">PyTorch</span><span class="tag">Milvus</span><span class="tag">Opik</span></div>
+        <a class="proj-link" href="https://github.com/Shivaprakashhv/AIMLProjects" target="_blank" rel="noopener">↗ View on GitHub</a>
+      </div>
+      <div class="card proj-card reveal">
+        <h3>Healthcare AI Orchestrator</h3>
+        <div class="award">🏆 IBM HackOn — Infosys Topaz &amp; IBM</div>
+        <p class="card p">AI-driven orchestrator on IBM watsonx for drug-safety queries, insurance coverage interpretation and medical bill analysis. Multi-agent architecture (Heal Hub, Coverage Agent, Invoice Extractor) using the FDA Open API, OCR and internal knowledge bases, with RAG, intent routing and governance controls.</p>
+        <div class="tags"><span class="tag">IBM watsonx</span><span class="tag">RAG</span><span class="tag">Multi-Agent</span><span class="tag">OCR</span></div>
+        <a class="proj-link" href="https://youtu.be/aY3oXVOZKa8?si=YOY_VACY6zFiDtbr" target="_blank" rel="noopener">↗ View on YouTube</a>
+      </div>
+      <div class="card proj-card reveal">
+        <h3>Agentic Meal-Planning Solution</h3>
+        <div class="award">🏆 AA Pathfinder Hackathon, Bengaluru</div>
+        <p class="card p">Agentic solution for the Akshaya Patra meal-planning problem using Automation Anywhere's latest agentic AI features — autonomously generating complete, decision-ready analysis reports for stakeholders from raw planning data.</p>
+        <div class="tags"><span class="tag">Automation Anywhere</span><span class="tag">Agentic AI</span></div>
+        <a class="proj-link" href="https://github.com/Shivaprakashhv/AIMLProjects" target="_blank" rel="noopener">↗ View on GitHub</a>
+      </div>
+      <div class="card proj-card reveal">
+        <h3>Auto Cure — Self-Healing Automation</h3>
+        <div class="award">🏆 Patent Potential Award (Top 7) · Infosys Techzooka 2025</div>
+        <p class="card p">Intelligent framework that dynamically detects and self-heals automation errors in real time. Awarded for high IP potential and real-world problem solving (USD 500 prize); spotlighted at AI Impact Summit 2026.</p>
+        <div class="tags"><span class="tag">Self-Healing</span><span class="tag">Intelligent Automation</span></div>
+        <a class="proj-link" href="https://youtu.be/Zb3c8fVYEQo?si=1uJKgQoOmJwdCOqV" target="_blank" rel="noopener">↗ View on YouTube</a>
+      </div>
+    </div>
+
+    <div class="proj-cat reveal">Machine Learning Projects</div>
+    <div class="proj-grid">
+      <div class="card proj-card reveal">
+        <h3>Amazon Product Recommendation System</h3>
+        <p class="card p">Hybrid recommendation engine combining content-based filtering (TF-IDF, cosine similarity) and collaborative filtering; engineered features from product metadata for personalization and diversity.</p>
+        <div class="tags"><span class="tag">Python</span><span class="tag">Scikit-learn</span><span class="tag">Pandas</span></div>
+        <a class="proj-link" href="https://github.com/Shivaprakashhv/AIMLProjects" target="_blank" rel="noopener">↗ View on GitHub</a>
+      </div>
+      <div class="card proj-card reveal">
+        <h3>Click-Through Rate (CTR) Prediction</h3>
+        <p class="card p">Ad click-probability models with advanced feature engineering and ROC-AUC optimization on imbalanced datasets.</p>
+        <div class="tags"><span class="tag">Logistic Regression</span><span class="tag">Random Forest</span><span class="tag">Gradient Boosting</span></div>
+        <a class="proj-link" href="https://github.com/Shivaprakashhv/AIMLProjects" target="_blank" rel="noopener">↗ View on GitHub</a>
+      </div>
+      <div class="card proj-card reveal">
+        <h3>IPL Data Analytics &amp; Predictive Modeling</h3>
+        <p class="card p">EDA, clustering and association rule mining for cricket insights; predictive models for match outcomes and player performance, plus a venue recommendation system.</p>
+        <div class="tags"><span class="tag">EDA</span><span class="tag">K-Means + PCA</span><span class="tag">Association Rules</span></div>
+        <a class="proj-link" href="https://github.com/Shivaprakashhv/AIMLProjects" target="_blank" rel="noopener">↗ View on GitHub</a>
+      </div>
+    </div>
+
+    <div class="gh-banner reveal">
+      <div>
+        <h3>Explore all repositories</h3>
+        <p>Code, notebooks and experiments across GenAI, RAG and machine learning.</p>
+      </div>
+      <a class="btn btn-primary" href="https://github.com/Shivaprakashhv/AIMLProjects" target="_blank" rel="noopener">Shivaprakashhv/AIMLProjects ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CERTIFICATES ================= -->
+<section id="certificates" style="background:var(--surface)">
+  <div class="wrap">
+    <span class="eyebrow reveal">// certificates &amp; achievements</span>
+    <h2 class="section-title reveal">Credentials &amp; <span class="grad-text">Recognition</span></h2>
+    <p class="section-sub reveal">Certified across cloud GenAI, enterprise RPA and software quality — recognized repeatedly for impact.</p>
+    <div class="cert-grid">
+      <div class="card cert-card reveal">
+        <div class="icon">☁️</div>
+        <h3>AWS Cloud Quest: Generative AI Practitioner</h3>
+        <div class="issuer">Amazon Web Services</div>
+      </div>
+      <div class="card cert-card reveal">
+        <div class="icon">🤖</div>
+        <h3>Certified Advanced RPA Professional</h3>
+        <div class="issuer">Automation Anywhere</div>
+      </div>
+      <div class="card cert-card reveal">
+        <div class="icon">🐍</div>
+        <h3>Infosys Certified Python Associate</h3>
+        <div class="issuer">Infosys</div>
+      </div>
+      <div class="card cert-card reveal">
+        <div class="icon">✅</div>
+        <h3>Digital Assurance Professional</h3>
+        <div class="issuer">Infosys</div>
+      </div>
+    </div>
+    <div class="ach-box reveal">
+      <ul class="acad-list">
+        <li><strong>“Outstanding” performance rating</strong> for two consecutive years at Infosys.</li>
+        <li><strong>Three Insta Awards</strong> in consecutive quarters for rapid problem-solving and high-impact solutions.</li>
+        <li><strong>Patent Potential Award (Top 7)</strong> at Infosys Techzooka 2025 — spotlighted at AI Impact Summit 2026.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section id="contact">
+  <div class="wrap">
+    <div class="contact-card reveal">
+      <span class="eyebrow">// contact</span>
+      <h2>Let's build something <span class="grad-text">intelligent</span> together</h2>
+      <p>Open to AI/ML engineering roles and collaborations in GenAI, RAG systems and intelligent automation. The fastest way to reach me is email.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:shivaprakashhv26@gmail.com">✉️ shivaprakashhv26@gmail.com</a>
+        <a class="btn btn-ghost" href="tel:+919482479738">📞 +91 94824 79738</a>
+        <a class="btn btn-ghost" href="https://www.linkedin.com/in/shivaprakash-h-v-54a675183/" target="_blank" rel="noopener">LinkedIn ↗</a>
+        <a class="btn btn-ghost" href="https://github.com/Shivaprakashhv/AIMLProjects" target="_blank" rel="noopener">GitHub ↗</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">shivaprakash h v © 2026 · built with 🧠 genai &amp; ☕ · bengaluru, india</div>
+</footer>
+
+<script>
+/* ---------- Theme toggle ---------- */
+function toggleTheme(){
+  const root = document.documentElement;
+  const light = root.getAttribute("data-theme") === "light";
+  if (light){ root.removeAttribute("data-theme"); }
+  else { root.setAttribute("data-theme","light"); }
+  document.getElementById("themeBtn").textContent = light ? "☀️" : "🌙";
+}
+
+/* ---------- Typed role rotation ---------- */
+(function(){
+  const roles = [
+    "AI Engineer",
+    "Generative AI · LLM Applications",
+    "RAG & Agentic AI Builder",
+    "Intelligent Automation Specialist"
+  ];
+  const el = document.getElementById("typed");
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduced){ el.textContent = roles[0]; return; }
+  let r = 0, i = 0, deleting = false;
+  function tick(){
+    const word = roles[r];
+    el.textContent = word.slice(0, i);
+    if (!deleting && i < word.length){ i++; setTimeout(tick, 55); }
+    else if (!deleting){ deleting = true; setTimeout(tick, 1800); }
+    else if (i > 0){ i--; setTimeout(tick, 28); }
+    else { deleting = false; r = (r + 1) % roles.length; setTimeout(tick, 350); }
+  }
+  tick();
+})();
+
+/* ---------- Reveal on scroll ---------- */
+(function(){
+  const els = document.querySelectorAll(".reveal");
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target);} });
+  },{threshold:.12});
+  els.forEach(el=>io.observe(el));
+})();
+
+/* ---------- Neural node canvas ---------- */
+(function(){
+  const c = document.getElementById("nodes");
+  if (!c) return;
+  const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  const ctx = c.getContext("2d");
+  let W, H, pts = [];
+  function resize(){
+    W = c.width = c.offsetWidth * devicePixelRatio;
+    H = c.height = c.offsetHeight * devicePixelRatio;
+    const n = Math.min(70, Math.floor(W / 26));
+    pts = Array.from({length:n},()=>({
+      x: Math.random()*W, y: Math.random()*H,
+      vx:(Math.random()-.5)*.25*devicePixelRatio, vy:(Math.random()-.5)*.25*devicePixelRatio
+    }));
+  }
+  function draw(){
+    ctx.clearRect(0,0,W,H);
+    const light = document.documentElement.getAttribute("data-theme") === "light";
+    const lineRGB = light ? "70,90,150" : "94,120,190";
+    const dotFill = light ? "rgba(14,154,167,.6)" : "rgba(63,214,224,.55)";
+    const lineAlpha = light ? .22 : .32;
+    const linkDist = 130*devicePixelRatio;
+    for (let i=0;i<pts.length;i++){
+      const p = pts[i];
+      if (!reduced){
+        p.x+=p.vx; p.y+=p.vy;
+        if(p.x<0||p.x>W)p.vx*=-1;
+        if(p.y<0||p.y>H)p.vy*=-1;
+      }
+      for (let j=i+1;j<pts.length;j++){
+        const q=pts[j], dx=p.x-q.x, dy=p.y-q.y, d=Math.hypot(dx,dy);
+        if(d<linkDist){
+          ctx.strokeStyle=`rgba(${lineRGB},${(1-d/linkDist)*lineAlpha})`;
+          ctx.lineWidth=1;
+          ctx.beginPath();ctx.moveTo(p.x,p.y);ctx.lineTo(q.x,q.y);ctx.stroke();
+        }
+      }
+      ctx.fillStyle=dotFill;
+      ctx.beginPath();ctx.arc(p.x,p.y,1.7*devicePixelRatio,0,7);ctx.fill();
+    }
+    if (!reduced) requestAnimationFrame(draw);
+  }
+  resize(); draw();
+  window.addEventListener("resize",()=>{resize(); if(reduced) draw();});
+  new MutationObserver(()=>{ if(reduced) draw(); }).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+})();
+
+/* ---------- Close mobile menu on link tap ---------- */
+document.querySelectorAll("#navlinks a").forEach(a=>{
+  a.addEventListener("click",()=>document.getElementById("navlinks").classList.remove("open"));
+});
+</script>
+</body>
+</html>
